@@ -4,28 +4,59 @@ using UnityEngine;
 
 public class Door : DefaultInteractable
 {
+    [SerializeField]
+    float targetRotation;
+    public float rotSpeed = 250, damping = 10, timer;
 
-    float targetRotation, rotSpeed = 250, damping = 10;
+    public bool open = false, canInteract, hasColision;
 
-    bool open = false;
+    BoxCollider bc;
+
+    private void Start()
+    {
+        bc = GetComponent<BoxCollider>();
+    }
 
     private void Update()
     {
-        transform.eulerAngles = new Vector3(0, (targetRotation+transform.eulerAngles.y)/2, 0);
+        if (open)
+        {
+            transform.eulerAngles += new Vector3(0, (targetRotation-transform.eulerAngles.y)/90f, 0);
+        }
+        else
+        {
+            transform.eulerAngles += new Vector3(0, (0 - transform.eulerAngles.y) / 90f, 0);
+        }
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            bc.enabled = true;
+            canInteract = true;
+        }
 
     }
 
     public override void OnInteract()
     {
-        if (open)
+        if (canInteract)
         {
-            targetRotation = 0;
-            open = false;
-        }
-        else
-        {
-            targetRotation = 90;
-            open = true;
+            timer = 0.5f;
+            canInteract = false;
+            bc.enabled = false;
+
+            if (open)
+            {
+
+                open = false;
+            }
+            else
+            {
+
+                open = true;
+            }
         }
     }
 
