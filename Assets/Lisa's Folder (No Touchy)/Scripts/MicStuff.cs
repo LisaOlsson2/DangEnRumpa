@@ -15,7 +15,7 @@ public class MicStuff : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            audioSource.clip = Microphone.Start("", true, 100, 44100);
+            audioSource.clip = Microphone.Start("", false, 100, 44100);
             
             while (Microphone.GetPosition("") <= 0)
             {
