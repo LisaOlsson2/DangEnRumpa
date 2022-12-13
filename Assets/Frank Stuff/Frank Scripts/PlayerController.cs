@@ -7,16 +7,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform playerCamera = null;
     [SerializeField]
-    float mouseSensitivityX = 3.5f, mouseSensitivityY = 3.5f, gravity = -13.0f, movementSpeed = 6.0f;
+    float mouseSensitivityX = 3.5f, mouseSensitivityY = 3.5f, gravity = -13.0f, movementSpeed = 6.0f, sprintMultiplier = 1.5f, stamina = 10;
     [SerializeField]
     [Range(0.0f, 0.5f)]
     float moveSmoothTime = 0.3f;
 
     [SerializeField]
-    KeyCode interact;
+    KeyCode interact, sprint;
 
     [SerializeField]
-    bool lockCursor = true;
+    bool lockCursor = true, sprinting = false;
 
     float cameraPitch = 0.0f;
     float velocityY = 0.0f;
@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             Interact();
         }
+
     }
 
     void UpdateMouse()
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
         cameraPitch -= mouseDelta.y * mouseSensitivityY; //we have to subtrackt, otherwise looking down will turn the camera up
 
-        cameraPitch = Mathf.Clamp(cameraPitch, -90.0f, 90.0f);
+        cameraPitch = Mathf.Clamp(cameraPitch, -80.0f, 80.0f);
 
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
 
@@ -78,10 +79,41 @@ public class PlayerController : MonoBehaviour
         {
             velocityY = 0.0f;
         }
-        velocityY += gravity * Time.deltaTime;
+        else
+        {
+            velocityY += gravity * Time.deltaTime;
+        }
+        
 
+        if (Input.GetKey(sprint) && stamina > 0)
+        {
+            sprinting = true;
+            stamina -= Time.deltaTime;
+        }
+        else
+        {
+            sprinting = false;
+        }
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * movementSpeed + Vector3.up * velocityY;
+        Vector3 velocity;
+        if (sprinting)
+        {
+            velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * movementSpeed * sprintMultiplier + Vector3.up * velocityY;
+        }
+        else
+        {
+            velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * movementSpeed + Vector3.up * velocityY;
+        }
+        
+        if (velocity == new Vector3(0, velocity.y, 0) && stamina < 10)
+        {
+            stamina += Time.deltaTime * 2;
+        }
+        else if(stamina > 10)
+        {
+            stamina = 10;
+        }
+        
 
         controller.Move(velocity * Time.deltaTime);
 
@@ -92,8 +124,18 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 1.5f))
         {
-            print("Interacted");
-            Instantiate(interactIndicator, hit.point, Quaternion.identity);
+            
+            
+            if (hit.transform.tag == "Interactable")
+            {
+                hit.transform.GetComponent<DefaultInteractable>().OnInteract();
+                
+            }
+            else
+            {
+                print("Wall Hit");
+                Instantiate(interactIndicator, hit.point, Quaternion.identity);
+            }
         }
     }
 }
