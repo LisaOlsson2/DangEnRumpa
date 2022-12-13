@@ -5,13 +5,14 @@ using UnityEngine;
 public class Door : DefaultInteractable
 {
 
-    float targetRotation;
+    float targetRotation, rotSpeed = 250, damping = 10;
 
     bool open = false;
 
     private void Update()
     {
-        transform.eulerAngles = new Vector3(0, targetRotation, 0);
+        transform.eulerAngles = new Vector3(0, (targetRotation+transform.eulerAngles.y)/2, 0);
+
     }
 
     public override void OnInteract()
