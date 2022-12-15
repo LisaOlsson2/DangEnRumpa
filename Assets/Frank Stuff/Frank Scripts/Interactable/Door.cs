@@ -21,11 +21,11 @@ public class Door : DefaultInteractable
     {
         if (open)
         {
-            transform.eulerAngles += new Vector3(0, (targetRotation-transform.eulerAngles.y) / 50f, 0);
+            transform.eulerAngles += new Vector3(0, (targetRotation-transform.eulerAngles.y) / 70f, 0);
         }
         else
         {
-            transform.eulerAngles += new Vector3(0, (0 - transform.eulerAngles.y) / 50f, 0);
+            transform.eulerAngles += new Vector3(0, (0 - transform.eulerAngles.y) / 70f, 0);
         }
         if (timer > 0)
         {
