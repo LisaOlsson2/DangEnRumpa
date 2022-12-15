@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MicStuff : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class MicStuff : MonoBehaviour
             {
             }
 
-            audioSource.Play();
+            if (!GetComponent<PhotonView>().IsMine)
+            {
+                audioSource.Play();
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
