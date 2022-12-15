@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcRotation : MonoBehaviour
+public class Rotation : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
