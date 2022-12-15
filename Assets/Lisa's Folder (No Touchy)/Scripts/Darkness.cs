@@ -2,47 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Darkness : MonoBehaviour
+public class Darkness : TempController
 {
-    // enable this script when darkness happens
+    int inDarkRooms;
 
     [SerializeField]
     Sprite sprite;
 
-    // the lengths of these should be the amount of players
-    readonly Sprite[] sprites = new Sprite[3];
-    readonly string[] names = new string[3];
+    SpriteRenderer spriteRenderer;
+    Sprite mySprite;
 
-    int people;
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        mySprite = spriteRenderer.sprite;
+    }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        names[people] = other.gameObject.name;
-        sprites[people] = other.GetComponent<SpriteRenderer>().sprite;
-        people++;
-        other.GetComponent<SpriteRenderer>().sprite = sprite;
-    }
+        if (inDarkRooms < 1)
+        {
+            spriteRenderer.sprite = sprite;
+        }
 
+        inDarkRooms++;
+    }
     private void OnTriggerExit(Collider other)
     {
+        inDarkRooms--;
 
-        for (int i = 0; i < people + 1; i++)
+        if (inDarkRooms < 1)
         {
-            if (names[i] == other.gameObject.name)
-            {
-                other.GetComponent<SpriteRenderer>().sprite = sprites[i];
-                sprites[i] = null;
-                names[i] = "";
-
-                people--;
-
-                if (i <= people)
-                {
-                    names[i] = names[people + 1];
-                    sprites[i] = sprites[people + 1];
-                }
-            }
+            spriteRenderer.sprite = mySprite;
         }
     }
 }
