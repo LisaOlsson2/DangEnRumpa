@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 1
-  sceneName: Lisa's Scene
+  sceneName: CharacterSelect
 --- !u!114 &520918961
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Scene.unity
     guid: 2e112cb0311b1d145a986df8ec548075
   - enabled: 1
-    path: Assets/Lisa's Folder (No Touchy)/Lisa's Scene.unity
+    path: Assets/Lisa's Folder (No Touchy)/Scenes/Lisa's Scene.unity
     guid: 2f27a7d0b0b34b94b9bd11cd2c622d56
+  - enabled: 1
+    path: Assets/Lisa's Folder (No Touchy)/Scenes/CharacterSelect.unity
+    guid: 806dab65a57c50b408fcc1100c6890fc
   m_configObjects: {}
