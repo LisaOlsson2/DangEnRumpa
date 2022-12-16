@@ -34,6 +34,11 @@ public class MicStuff : MonoBehaviour
                 print("playing isn't mine");
                 audioSource.Play();
             }
+            else
+            {
+                print("playing is mine");
+                audioSource.Play();
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) && photonView.IsMine)
