@@ -13,14 +13,19 @@ public class MicStuff : MonoBehaviour
     {
         photonView = GetComponent<PhotonView>();
         audioSource = GetComponent<AudioSource>();
+
+        if (photonView.IsMine)
+        {
+            Destroy(GetComponent<AudioSource>());
+            Destroy(this);
+        }
     }
 
     void Update()
     {
-        if (!photonView.IsMine && Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             audioSource.clip = Microphone.Start("", false, 100, 44100);
-            print("recording");
 
             while (Microphone.GetPosition("") <= 0)
             {
@@ -29,7 +34,7 @@ public class MicStuff : MonoBehaviour
             audioSource.Play();
         }
 
-        if (!photonView.IsMine && Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             Microphone.End("");
         }
