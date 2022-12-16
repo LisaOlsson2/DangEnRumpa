@@ -30,11 +30,13 @@ public class MicStuff : MonoBehaviour
 
             if (!GetComponent<PhotonView>().IsMine)
             {
+                print("playing isn't mine");
                 audioSource.Play();
             }
 
             if (playRegardless)
             {
+                print("playing both");
                 audioSource.Play();
             }
         }
