@@ -5,43 +5,38 @@ using Photon.Pun;
 
 public class MicStuff : MonoBehaviour
 {
+    PhotonView photonView;
+
     AudioSource audioSource;
-    bool playRegardless;
 
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playRegardless = !playRegardless;
-        }
-
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             audioSource.clip = Microphone.Start("", false, 100, 44100);
+            if (photonView.IsMine)
+            {
+                audioSource.clip = Microphone.Start("", false, 100, 44100);
+            }
             
             while (Microphone.GetPosition("") <= 0)
             {
             }
 
-            if (!GetComponent<PhotonView>().IsMine)
+            if (!photonView.IsMine)
             {
                 print("playing isn't mine");
                 audioSource.Play();
             }
-
-            if (playRegardless)
-            {
-                print("playing both");
-                audioSource.Play();
-            }
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) && photonView.IsMine)
         {
             Microphone.End("");
         }
