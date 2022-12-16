@@ -6,6 +6,7 @@ using Photon.Pun;
 public class MicStuff : MonoBehaviour
 {
     AudioSource audioSource;
+    bool playRegardless;
 
     void Start()
     {
@@ -14,6 +15,11 @@ public class MicStuff : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playRegardless = !playRegardless;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             audioSource.clip = Microphone.Start("", false, 100, 44100);
@@ -23,6 +29,11 @@ public class MicStuff : MonoBehaviour
             }
 
             if (!GetComponent<PhotonView>().IsMine)
+            {
+                audioSource.Play();
+            }
+
+            if (playRegardless)
             {
                 audioSource.Play();
             }
