@@ -6,19 +6,15 @@ using Photon.Pun;
 public class MicStuff : MonoBehaviour
 {
     PhotonView photonView;
-
     AudioSource audioSource;
+
+    AllSounds sounds;
 
     void Start()
     {
         photonView = GetComponent<PhotonView>();
         audioSource = GetComponent<AudioSource>();
-
-        if (photonView.IsMine)
-        {
-            Destroy(GetComponent<AudioSource>());
-            Destroy(this);
-        }
+        sounds = FindObjectOfType<AllSounds>();
     }
 
     void Update()
@@ -31,7 +27,7 @@ public class MicStuff : MonoBehaviour
             {
             }
 
-            audioSource.Play();
+            sounds.Play(0, photonView.IsMine);
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -39,4 +35,6 @@ public class MicStuff : MonoBehaviour
             Microphone.End("");
         }
     }
+
+
 }
