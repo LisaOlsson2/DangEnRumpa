@@ -17,31 +17,19 @@ public class MicStuff : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (!photonView.IsMine && Input.GetKeyDown(KeyCode.LeftShift))
         {
             audioSource.clip = Microphone.Start("", false, 100, 44100);
-            if (photonView.IsMine)
-            {
-                audioSource.clip = Microphone.Start("", false, 100, 44100);
-            }
-            
+            print("recording");
+
             while (Microphone.GetPosition("") <= 0)
             {
             }
 
-            if (!photonView.IsMine)
-            {
-                print("playing isn't mine");
-                audioSource.Play();
-            }
-            else
-            {
-                print("playing is mine");
-                audioSource.Play();
-            }
+            audioSource.Play();
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift) && photonView.IsMine)
+        if (!photonView.IsMine && Input.GetKeyUp(KeyCode.LeftShift))
         {
             Microphone.End("");
         }
