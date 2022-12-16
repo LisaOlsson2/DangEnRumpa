@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
     void Interact()
     {
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 2f))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 3f))
         {
             
             
