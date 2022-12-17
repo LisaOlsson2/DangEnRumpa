@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4593822116845852497}
   - component: {fileID: 6081458202920061121}
   - component: {fileID: -4115960237338437073}
+  - component: {fileID: -2683612930471159594}
   m_Layer: 0
   m_Name: Frank
   m_TagString: Untagged
@@ -262,3 +263,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9286f6ae9346d4648a8a0e057d9bc56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2683612930471159594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4593822116845852491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+  m_UseLocal: 1

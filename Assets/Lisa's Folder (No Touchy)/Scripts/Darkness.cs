@@ -12,8 +12,9 @@ public class Darkness : TempPlayerMovement
     SpriteRenderer spriteRenderer;
     Sprite mySprite;
 
-    void Start()
+    public override void Start()
     {
+        base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
         mySprite = spriteRenderer.sprite;
     }

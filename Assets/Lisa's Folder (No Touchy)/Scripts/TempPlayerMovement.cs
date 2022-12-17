@@ -1,28 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class TempPlayerMovement : MonoBehaviour
 {
-    readonly float speed = 15;
+    readonly float speed = 10;
+    PhotonView photonView;
+
+    public virtual void Start()
+    {
+        photonView = GetComponent<PhotonView>();
+    }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (photonView.IsMine)
         {
-            transform.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += new Vector3(0, 0, -speed) * Time.deltaTime;
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += new Vector3(-speed, 0, 0) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += new Vector3(speed, 0, 0) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.position += new Vector3(0, 0, speed) * Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                transform.position += new Vector3(0, 0, -speed) * Time.deltaTime;
+            }
         }
     }
 }
