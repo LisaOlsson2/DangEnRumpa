@@ -22,20 +22,26 @@ public class Darkness : TempPlayerMovement
 
     private void OnTriggerEnter(Collider other)
     {
-        if (inDarkRooms < 1)
+        if (false)
         {
-            spriteRenderer.sprite = sprite;
-        }
+            if (inDarkRooms < 1)
+            {
+                spriteRenderer.sprite = sprite;
+            }
 
-        inDarkRooms++;
+            inDarkRooms++;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        inDarkRooms--;
-
-        if (inDarkRooms < 1)
+        if (false)
         {
-            spriteRenderer.sprite = mySprite;
+            inDarkRooms--;
+
+            if (inDarkRooms < 1)
+            {
+                spriteRenderer.sprite = mySprite;
+            }
         }
     }
 }

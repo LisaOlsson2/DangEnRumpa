@@ -6,9 +6,17 @@ using Photon.Pun;
 public class MicStuff : MonoBehaviour
 {
     AudioSource audioSource;
+    PhotonView photonView;
 
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
+
+        if (photonView.IsMine)
+        {
+            Destroy(this);
+        }
+
         audioSource = GetComponent<AudioSource>();
     }
 
