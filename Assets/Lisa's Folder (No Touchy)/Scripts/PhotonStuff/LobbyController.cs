@@ -12,20 +12,16 @@ public class LobbyController : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRandomRoom();
-        print("Trying to join");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        print("can't find room");
         CreateRoom();
     }
 
     void CreateRoom()
     {
-        print("creating room");
         int randomRoomNumber = Random.Range(0, 100000);
-        print(randomRoomNumber);
 
         RoomOptions options = new()
         {

@@ -6,10 +6,12 @@ using Photon.Pun;
 public class MicStuff : MonoBehaviour
 {
     PhotonView photonView;
-    AudioSource[] mineInOthers = new AudioSource[4];
+
+    AudioSource[] mineInOthers;
 
     void OnEnable()
     {
+        PhotonNetwork.LocalPlayer.TagObject = gameObject;
         photonView = GetComponent<PhotonView>();
 
         if (photonView.IsMine)
@@ -19,18 +21,19 @@ public class MicStuff : MonoBehaviour
     }
 
     [PunRPC]
-    void SetSource()
+    void SetSource(Photon.Realtime.Player player)
     {
-        print(GetComponent<AudioSource>());
+        print(player.TagObject);
     }
 
     void Update()
     {
+
         if (photonView.IsMine)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                photonView.RPC("SetSource", RpcTarget.Others);
+                photonView.RPC("SetSource", RpcTarget.Others, PhotonNetwork.LocalPlayer);
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))

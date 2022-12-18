@@ -17,12 +17,10 @@ public class NetworkController : MonoBehaviourPunCallbacks
     {
         startButton.interactable = false;
         PhotonNetwork.ConnectUsingSettings();
-        print("Connecting");
     }
 
     public override void OnConnectedToMaster()
     {
-        print("Connected to server in " + PhotonNetwork.CloudRegion);
         startButton.interactable = true;
         PhotonNetwork.AutomaticallySyncScene = true;
     }
