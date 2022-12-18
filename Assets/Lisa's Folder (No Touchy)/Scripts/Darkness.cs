@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Darkness : TempPlayerMovement
 {
@@ -12,17 +13,22 @@ public class Darkness : TempPlayerMovement
     SpriteRenderer spriteRenderer;
     Sprite mySprite;
 
-    public override void Start()
+    void OnEnable()
     {
-        base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        mySprite = spriteRenderer.sprite;
+        if (!GetComponent<PhotonView>().IsMine)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            mySprite = spriteRenderer.sprite;
+        }
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
-        if (false)
+        if (other.gameObject.layer == 6)
         {
             if (inDarkRooms < 1)
             {
@@ -34,7 +40,7 @@ public class Darkness : TempPlayerMovement
     }
     private void OnTriggerExit(Collider other)
     {
-        if (false)
+        if (other.gameObject.layer == 6)
         {
             inDarkRooms--;
 

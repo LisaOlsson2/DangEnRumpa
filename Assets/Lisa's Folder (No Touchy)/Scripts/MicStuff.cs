@@ -5,37 +5,55 @@ using Photon.Pun;
 
 public class MicStuff : MonoBehaviour
 {
-    AudioSource audioSource;
     PhotonView photonView;
+    AudioSource[] mineInOthers = new AudioSource[4];
 
-    void Start()
+    void OnEnable()
     {
         photonView = GetComponent<PhotonView>();
 
         if (photonView.IsMine)
         {
-            Destroy(this);
+            Destroy(GetComponent<AudioSource>());
         }
+    }
 
-        audioSource = GetComponent<AudioSource>();
+    [PunRPC]
+    void SetSource()
+    {
+        print(GetComponent<AudioSource>());
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (photonView.IsMine)
         {
-            audioSource.clip = Microphone.Start("", false, 100, 44100);
-
-            while (Microphone.GetPosition("") <= 0)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
+                photonView.RPC("SetSource", RpcTarget.Others);
             }
 
-            audioSource.Play();
-        }
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                foreach (AudioSource another in mineInOthers)
+                {
+                    another.clip = Microphone.Start("", false, 100, 44100);
+                }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            Microphone.End("");
+                while (Microphone.GetPosition("") <= 0)
+                {
+                }
+
+                foreach (AudioSource another in mineInOthers)
+                {
+                    another.Play();
+                }
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                Microphone.End("");
+            }
         }
     }
 }
