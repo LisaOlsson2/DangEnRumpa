@@ -5,7 +5,7 @@ using UnityEngine;
 public class Reference
 {
     public AudioController audioController;
-
+    public AudioSource audioSource;
 
 
     #region i no understando
