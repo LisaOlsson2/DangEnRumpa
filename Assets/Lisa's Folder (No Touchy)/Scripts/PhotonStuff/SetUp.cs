@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class MicStuff : MonoBehaviour
+public class SetUp : MonoBehaviour
 {
     PhotonView photonView;
     Reference myReference = new();
@@ -23,12 +23,18 @@ public class MicStuff : MonoBehaviour
 
         if (photonView.IsMine)
         {
+            Destroy(GetComponent<Rotation>());
+            Destroy(GetComponent<Darkness>());
+
             Destroy(GetComponent<AudioSource>());
             PhotonNetwork.LocalPlayer.TagObject = gameObject;
             myReference.audioController = GetComponent<AudioController>();
         }
         else
         {
+            Destroy(GetComponent<TempPlayerMovement>());
+            GetComponent<Darkness>().SetSprite();
+
             Destroy(GetComponent<AudioController>());
         }
     }

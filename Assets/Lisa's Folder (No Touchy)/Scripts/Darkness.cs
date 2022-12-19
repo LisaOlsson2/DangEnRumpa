@@ -13,17 +13,10 @@ public class Darkness : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Sprite mySprite;
 
-    void OnEnable()
+    public void SetSprite()
     {
-        if (GetComponent<PhotonView>().IsMine)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            mySprite = spriteRenderer.sprite;
-        }
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        mySprite = spriteRenderer.sprite;
     }
 
     private void OnTriggerEnter(Collider other)

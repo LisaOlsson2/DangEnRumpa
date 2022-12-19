@@ -7,13 +7,6 @@ public class TempPlayerMovement : MonoBehaviour
 {
     readonly float speed = 10;
 
-    void OnEnable()
-    {
-        if (!GetComponent<PhotonView>().IsMine)
-        {
-            Destroy(this);
-        }
-    }
     void Update()
     {
         if (Input.GetKey(KeyCode.A))
