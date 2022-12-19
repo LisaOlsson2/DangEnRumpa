@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -2905922167254956256}
   - component: {fileID: 5974555942804223762}
   - component: {fileID: -6649265109562343087}
+  - component: {fileID: 3230166986228855842}
+  - component: {fileID: -8422391380895774233}
   m_Layer: 0
   m_Name: Eddie
   m_TagString: Untagged
@@ -280,3 +282,28 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &3230166986228855842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056526144294726757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8e7a74c5375b541bba1fed565f90bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mineInOthers: []
+--- !u!114 &-8422391380895774233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056526144294726757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87259a5e0727f64cb3a293517195e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

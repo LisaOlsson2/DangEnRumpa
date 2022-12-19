@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Darkness : TempPlayerMovement
+public class Darkness : MonoBehaviour
 {
     int inDarkRooms;
 
@@ -15,7 +15,7 @@ public class Darkness : TempPlayerMovement
 
     void OnEnable()
     {
-        if (!GetComponent<PhotonView>().IsMine)
+        if (GetComponent<PhotonView>().IsMine)
         {
             Destroy(this);
         }

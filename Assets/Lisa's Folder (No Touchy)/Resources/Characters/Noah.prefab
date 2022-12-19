@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -4246304772419333267}
   - component: {fileID: -4300315068486394879}
   - component: {fileID: 7568768627984348151}
+  - component: {fileID: -46155288401454028}
+  - component: {fileID: 9196442155980802894}
   m_Layer: 0
   m_Name: Noah
   m_TagString: Untagged
@@ -280,3 +282,28 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-46155288401454028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995080269090728271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8e7a74c5375b541bba1fed565f90bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mineInOthers: []
+--- !u!114 &9196442155980802894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995080269090728271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87259a5e0727f64cb3a293517195e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

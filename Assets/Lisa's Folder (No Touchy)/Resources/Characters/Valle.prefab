@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 2521468764601582840}
   - component: {fileID: -1740143607336239613}
   - component: {fileID: 2953828774626486556}
+  - component: {fileID: 4069247997115105073}
+  - component: {fileID: 8875459483517316283}
   m_Layer: 0
   m_Name: Valle
   m_TagString: Untagged
@@ -280,3 +282,28 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4069247997115105073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809421002746005748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8e7a74c5375b541bba1fed565f90bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mineInOthers: []
+--- !u!114 &8875459483517316283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809421002746005748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87259a5e0727f64cb3a293517195e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

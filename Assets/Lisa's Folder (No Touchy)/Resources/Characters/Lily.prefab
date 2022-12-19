@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -7110056068911433089}
   - component: {fileID: 3063889071495044677}
   - component: {fileID: 6177314779592895962}
+  - component: {fileID: -7701100233523486191}
+  - component: {fileID: -8022473186770124198}
   m_Layer: 0
   m_Name: Lily
   m_TagString: Untagged
@@ -34,7 +36,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -264,7 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9286f6ae9346d4648a8a0e057d9bc56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mineInOthers: []
 --- !u!114 &6177314779592895962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,3 +282,28 @@ MonoBehaviour:
   m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-7701100233523486191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747732891157951499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8e7a74c5375b541bba1fed565f90bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mineInOthers: []
+--- !u!114 &-8022473186770124198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747732891157951499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e87259a5e0727f64cb3a293517195e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

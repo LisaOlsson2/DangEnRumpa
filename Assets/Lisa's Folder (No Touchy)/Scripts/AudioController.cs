@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    public List<AudioSource> mineInOthers = new();
+    public List<AudioSource> mineInOthers;
 
     private void Update()
     {
