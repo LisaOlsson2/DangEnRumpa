@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -8422391380895774233}
   - component: {fileID: -2265924884166031348}
   - component: {fileID: 5695221972239052338}
+  - component: {fileID: 6546743153428367235}
   m_Layer: 0
   m_Name: Eddie
   m_TagString: Untagged
@@ -318,5 +319,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e65975f9634ae428bd999baabb3276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6546743153428367235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6056526144294726757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60521e7718ede604da174a9a578d0225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: -6805576415622287152}
   - component: {fileID: 3094132285421195795}
   - component: {fileID: -8131234523168622106}
+  - component: {fileID: 7956648487495378045}
   m_Layer: 0
   m_Name: Lexa
   m_TagString: Untagged
@@ -111,9 +112,10 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 0
+  observableSearch: 2
   ObservedComponents:
   - {fileID: -5139309406013924262}
+  - {fileID: 7956648487495378045}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -318,5 +320,17 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e65975f9634ae428bd999baabb3276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7956648487495378045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3025396295541658940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60521e7718ede604da174a9a578d0225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

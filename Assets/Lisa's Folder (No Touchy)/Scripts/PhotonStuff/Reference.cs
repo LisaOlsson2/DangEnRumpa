@@ -5,10 +5,7 @@ using UnityEngine;
 public class Reference
 {
     public AudioController audioController;
-    public AudioSource audioSource;
 
-
-    #region i no understando
     public byte Id { get; set; }
 
     public static object Deserialize(byte[] data)
@@ -23,5 +20,4 @@ public class Reference
         var c = (Reference)customType;
         return new byte[] { c.Id };
     }
-    #endregion
 }
