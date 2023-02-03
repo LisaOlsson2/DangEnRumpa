@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     CharacterController controller = null;
 
+    public int currentAnimationFrame;
+
     [SerializeField]
     GameObject interactIndicator;
 
@@ -138,4 +140,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    
 }
