@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     float moveSmoothTime = 0.3f;
 
     [SerializeField]
-    KeyCode interact, sprint;
+    KeyCode interact, sprint, inv1, inv2, inv3, dropItem;
 
     [SerializeField]
     bool lockCursor = true, sprinting = false;
@@ -25,8 +25,13 @@ public class PlayerController : MonoBehaviour
 
     public int currentAnimationFrame;
 
+    public int[] itemInventory = new int[3];
+    public int selectedItem = 0;
+
     [SerializeField]
     GameObject interactIndicator;
+
+    public GameObject[] itemList;
 
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
@@ -119,6 +124,31 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
+        if (Input.GetKeyDown(inv1))
+        {
+            selectedItem = 0;
+        }
+
+        if (Input.GetKeyDown(inv2))
+        {
+            selectedItem = 1;
+        }
+
+        if (Input.GetKeyDown(inv3))
+        {
+            selectedItem = 2;
+        }
+
+        if (Input.GetKeyDown(dropItem))
+        {
+            if (itemInventory[selectedItem] != 0)
+            {
+                print(itemInventory[selectedItem]);
+                GameObject thing = Instantiate(itemList[itemInventory[selectedItem]-1], transform.position + transform.forward, Quaternion.identity);
+                thing.name = itemList[itemInventory[selectedItem] - 1].name;
+                itemInventory[selectedItem] = 0;
+            }
+        }
     }
 
     void Interact()
@@ -130,7 +160,9 @@ public class PlayerController : MonoBehaviour
             
             if (hit.transform.tag == "Interactable")
             {
-                hit.transform.GetComponent<DefaultInteractable>().OnInteract();
+                DefaultInteractable target = hit.transform.GetComponent<DefaultInteractable>();
+                target.player = gameObject;
+                target.OnInteract();
                 
             }
             else

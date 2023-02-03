@@ -51,22 +51,22 @@ public class Billboard : MonoBehaviour
                 playerDirectionDiff += 360;
             }
 
-            if (playerDirectionDiff < 45 + 10)
+            if (playerDirectionDiff < 45 + 5)
             {
                 sr.sprite = spriteArray[0];
                 //print("0");
             }
-            else if (playerDirectionDiff < 135 - 10)
+            else if (playerDirectionDiff < 135 - 5)
             {
                 sr.sprite = spriteArray[1];
                 //print("1");
             }
-            else if (playerDirectionDiff < 225 + 10)
+            else if (playerDirectionDiff < 225 + 5)
             {
                 sr.sprite = spriteArray[2];
                 //print("2");
             }
-            else if (playerDirectionDiff < 315 - 10)
+            else if (playerDirectionDiff < 315 - 5)
             {
                 sr.sprite = spriteArray[3];
                 //print("3");
