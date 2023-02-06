@@ -31,6 +31,8 @@ public class Billboard : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         trueYRotation = transform.localEulerAngles.y;
+
+
     }
 
     // Update is called once per frame

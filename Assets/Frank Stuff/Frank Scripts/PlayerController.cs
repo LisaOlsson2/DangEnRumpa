@@ -7,13 +7,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Transform playerCamera = null;
     [SerializeField]
-    float mouseSensitivityX = 3.5f, mouseSensitivityY = 3.5f, gravity = -13.0f, movementSpeed = 6.0f, sprintMultiplier = 1.5f, stamina = 10;
+    float mouseSensitivityX = 3.5f, mouseSensitivityY = 3.5f, gravity = -13.0f, movementSpeed = 6.0f, sprintMultiplier = 1.5f;
+    public float stamina = 10;
     [SerializeField]
     [Range(0.0f, 0.5f)]
     float moveSmoothTime = 0.3f;
 
     [SerializeField]
-    KeyCode interact, sprint, inv1, inv2, inv3, dropItem;
+    KeyCode interact, sprint, inv1, inv2, inv3, dropItem, dropTool;
 
     [SerializeField]
     bool lockCursor = true, sprinting = false;
@@ -31,7 +32,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject interactIndicator;
 
-    public GameObject[] itemList;
+    public int tool;
+
+    public GameObject[] itemList, toolList;
 
     Vector2 currentDir = Vector2.zero;
     Vector2 currentDirVelocity = Vector2.zero;
@@ -112,9 +115,9 @@ public class PlayerController : MonoBehaviour
             velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * movementSpeed + Vector3.up * velocityY;
         }
         
-        if (velocity == new Vector3(0, velocity.y, 0) && stamina < 10)
+        if (targetDir == new Vector2(0, 0) && stamina < 10)
         {
-            stamina += Time.deltaTime * 2;
+            stamina += Time.deltaTime * 1f;
         }
         else if(stamina > 10)
         {
@@ -144,9 +147,19 @@ public class PlayerController : MonoBehaviour
             if (itemInventory[selectedItem] != 0)
             {
                 print(itemInventory[selectedItem]);
-                GameObject thing = Instantiate(itemList[itemInventory[selectedItem]-1], transform.position + transform.forward, Quaternion.identity);
+                GameObject thing = Instantiate(itemList[itemInventory[selectedItem]-1], transform.position + transform.forward * 1.5f, Quaternion.identity);
                 thing.name = itemList[itemInventory[selectedItem] - 1].name;
                 itemInventory[selectedItem] = 0;
+            }
+        }
+        if (Input.GetKeyDown(dropTool))
+        {
+            if (tool != 0)
+            {
+                
+                GameObject thing = Instantiate(toolList[tool-1], transform.position + transform.forward * 1.5f, Quaternion.identity);
+                thing.name = toolList[tool - 1].name;
+                tool = 0;
             }
         }
     }
