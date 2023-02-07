@@ -27,7 +27,7 @@ public class CraftingStation : DefaultInteractable
     void Start()
     {
 
-        pc = FindObjectOfType<PlayerController>();
+        pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
 
         if (destroysTool)
         {

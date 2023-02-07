@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pc = FindObjectOfType<PlayerController>();
+        pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
 
         image = GetComponent<Image>();
     }

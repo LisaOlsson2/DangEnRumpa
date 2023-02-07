@@ -26,7 +26,7 @@ public class Billboard : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        player = FindObjectOfType<PlayerController>().gameObject;
+        player = FindObjectOfType<GameSetup>().localPlayer;
 
         sr = GetComponent<SpriteRenderer>();
 
@@ -38,6 +38,16 @@ public class Billboard : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (cam != Camera.main)
+        {
+            cam = Camera.main;
+            return;
+        }
+        if (player != FindObjectOfType<GameSetup>().localPlayer)
+        {
+            player = FindObjectOfType<GameSetup>().localPlayer;
+            return;
+        }
 
         if (canRotate)
         {

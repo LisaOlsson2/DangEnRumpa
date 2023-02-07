@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     KeyCode interact, sprint, inv1, inv2, inv3, dropItem, dropTool;
 
     [SerializeField]
-    bool lockCursor = true, sprinting = false;
+    bool lockCursor = true, sprinting = false, spectator = false;
 
     float cameraPitch = 0.0f;
     float velocityY = 0.0f;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     GameObject interactIndicator;
 
     public int tool;
+
 
     public GameObject[] itemList, toolList;
 
@@ -54,12 +55,23 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         UpdateMouse();
         UpdateMovement();
-        if (Input.GetKeyDown(interact))
+        if (spectator)
         {
-            Interact();
+            stamina = 10;
+            Camera.main.fieldOfView = 90;
         }
+        else
+        {
+            if (Input.GetKeyDown(interact) && !spectator)
+            {
+                Interact();
+            }
+            Camera.main.fieldOfView = 60;
+        }
+        
 
     }
 
@@ -72,6 +84,7 @@ public class PlayerController : MonoBehaviour
         cameraPitch = Mathf.Clamp(cameraPitch, -80.0f, 80.0f);
 
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;
+        
 
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivityX);
 
@@ -117,7 +130,7 @@ public class PlayerController : MonoBehaviour
         
         if (targetDir == new Vector2(0, 0) && stamina < 10)
         {
-            stamina += Time.deltaTime * 1f;
+            stamina += Time.deltaTime * 0.6f;
         }
         else if(stamina > 10)
         {

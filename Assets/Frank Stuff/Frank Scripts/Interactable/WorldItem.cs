@@ -26,12 +26,12 @@ public class WorldItem : DefaultInteractable
         {
             for (int i = 0; i < player.GetComponent<PlayerController>().toolList.Length; i++)
             {
-                print(player.GetComponent<PlayerController>().toolList[i]);
+                //print(player.GetComponent<PlayerController>().toolList[i]);
                 if (player.GetComponent<PlayerController>().toolList[i].name == transform.parent.gameObject.name)
                 {
                     itemIndex = i + 1;
                     transform.parent.name = player.GetComponent<PlayerController>().toolList[i].name;
-                    print(itemIndex);
+                    //print(itemIndex);
                     break;
                 }
             }
@@ -52,11 +52,11 @@ public class WorldItem : DefaultInteractable
         {
             for (int i = 0; i < player.GetComponent<PlayerController>().itemList.Length; i++)
             {
-                print(player.GetComponent<PlayerController>().itemList[i]);
+                //print(player.GetComponent<PlayerController>().itemList[i]);
                 if (player.GetComponent<PlayerController>().itemList[i].name == transform.parent.gameObject.name)
                 {
                     itemIndex = i + 1;
-                    print(itemIndex);
+                    //print(itemIndex);
                     break;
                 }
             }
