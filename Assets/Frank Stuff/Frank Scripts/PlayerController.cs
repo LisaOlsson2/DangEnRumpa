@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,6 +44,16 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!GetComponent<PhotonView>().IsMine)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+            this.enabled = false;
+        }
+        else
+        {
+            Destroy(transform.GetChild(1).gameObject);
+        }
+
         controller = GetComponent<CharacterController>();
 
         if (lockCursor)
@@ -72,7 +83,6 @@ public class PlayerController : MonoBehaviour
             Camera.main.fieldOfView = 60;
         }
         
-
     }
 
     void UpdateMouse()

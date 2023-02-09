@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 
 public class CraftingStation : DefaultInteractable
 {
+    public PlayerController pc;
 
     public int[] indexes = new int[5]; 
 
@@ -16,17 +18,19 @@ public class CraftingStation : DefaultInteractable
     [SerializeField]
     GameObject destroyToolIndicator;
 
-    PlayerController pc;
+    
 
      bool correctTool = false, canCraft = false;
         
     [SerializeField]
     bool destroysTool, toolOutput;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    
 
+    // Start is called before the first frame update
+    void FirstAction()
+    {
+        
         pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
 
         if (destroysTool)
@@ -40,8 +44,8 @@ public class CraftingStation : DefaultInteractable
 
         for (int i = 0; i < slots.Length; i++)
         {
-            slots[i].GetComponent<CraftingIcon>().icon = slots[i].transform.GetChild(0).gameObject;
-            slots[i].GetComponent<CraftingIcon>().image = slots[i].GetComponent<Image>();
+            //slots[i].GetComponent<CraftingIcon>().icon = slots[i].transform.GetChild(0).gameObject;
+            //sslots[i].GetComponent<CraftingIcon>().image = slots[i].GetComponent<Image>();
             
             if (indexes[i] == 0)
             {
@@ -73,6 +77,19 @@ public class CraftingStation : DefaultInteractable
     // Update is called once per frame
     void Update()
     {
+        print(pc);
+        if (pc != FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>())
+        {
+            print("trying");
+            pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
+            if (pc == FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>())
+            {
+                FirstAction();
+                print("suceeded");
+            }
+            return;
+        }
+
         for (int i = 0; i < slots.Length; i++)
         {
             if (indexes[i] != 0)

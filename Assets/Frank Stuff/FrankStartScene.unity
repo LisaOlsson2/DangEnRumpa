@@ -410,6 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 123953931}
+  - component: {fileID: 123953932}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -432,6 +433,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &123953932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123953930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e861ade1d60498a4bbb28567868ea893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomSize: 10
 --- !u!1 &136379857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,6 +1134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1375476089}
+  - component: {fileID: 1375476090}
   m_Layer: 0
   m_Name: RoomManager
   m_TagString: Untagged
@@ -1142,6 +1157,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1375476090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375476088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29d88773a0c904144860e7a0404c5956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneIndex: 3
 --- !u!1 &1865919378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,7 +1390,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2103341847}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 123953932}
+        m_TargetAssemblyTypeName: FrankLobbyCoantroller, Assembly-CSharp
+        m_MethodName: JoinRoom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2103341847
 MonoBehaviour:
   m_ObjectHideFlags: 0

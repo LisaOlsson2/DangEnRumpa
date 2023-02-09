@@ -23,15 +23,18 @@ public class CraftingIcon : MonoBehaviour
     {
 
 
-        pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
+        //pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
 
 
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        icon = transform.GetChild(0).gameObject;
+        image = GetComponent<Image>();
+
         /*
         if (isTool)
         {

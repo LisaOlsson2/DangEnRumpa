@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Start Scene.unity
     guid: 2e112cb0311b1d145a986df8ec548075
   - enabled: 1
+    path: Assets/Frank Stuff/FrankStartScene.unity
+    guid: 6e70c842650832f4e887520cf00d5993
+  - enabled: 1
     path: Assets/Lisa's Folder (No Touchy)/Scenes/StartScene.unity
     guid: 51e690a2955466e469f00d5a2bfd95d7
   - enabled: 1
     path: Assets/Lisa's Folder (No Touchy)/Scenes/Lisa's Scene.unity
     guid: 2f27a7d0b0b34b94b9bd11cd2c622d56
+  - enabled: 1
+    path: Assets/Frank Stuff/FrankGameplay.unity
+    guid: 00fd5db3034fe1b40bdec1e88c7243b0
   m_configObjects: {}

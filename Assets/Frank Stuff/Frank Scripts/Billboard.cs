@@ -10,7 +10,7 @@ public class Billboard : MonoBehaviour
     GameObject player;
 
     [SerializeField]
-    GameObject rotationChecker;
+    GameObject rotationChecker, parentObject;
 
     public float playerDirectionDiff, trueYRotation;
 
@@ -20,7 +20,7 @@ public class Billboard : MonoBehaviour
     Sprite[] spriteArray = new Sprite[4];
 
     [SerializeField]
-    bool canRotate;
+    bool canRotate, hasParent;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,12 @@ public class Billboard : MonoBehaviour
 
         if (canRotate)
         {
+            if (hasParent)
+            {
+                trueYRotation = parentObject.transform.eulerAngles.y;
+            }
+            
+            
             rotationChecker.transform.LookAt(player.transform);
             playerDirectionDiff = trueYRotation - rotationChecker.transform.eulerAngles.y;
 
