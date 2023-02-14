@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Photon.Pun;
 
 public class WorldItem : DefaultInteractable
 {
@@ -41,7 +42,11 @@ public class WorldItem : DefaultInteractable
             {
                 print("Tool Pickup");
                 player.GetComponent<PlayerController>().tool = itemIndex;
-                Destroy(transform.parent.gameObject);
+                if (GetComponentInParent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(transform.parent.gameObject);
+                }
+                
             }
             else
             {
@@ -66,7 +71,11 @@ public class WorldItem : DefaultInteractable
             {
                 print("Item Pickup");
                 slot[player.GetComponent<PlayerController>().selectedItem] = itemIndex;
-                Destroy(transform.parent.gameObject);
+                if (GetComponentInParent<PhotonView>().IsMine)
+                {
+                    PhotonNetwork.Destroy(transform.parent.gameObject);
+                }
+                
             }
             else
             {

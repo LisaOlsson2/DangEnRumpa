@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationChecker: {fileID: 0}
+  parentObject: {fileID: 0}
   playerDirectionDiff: 0
   trueYRotation: 0
   spriteArray:
@@ -144,6 +145,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   canRotate: 0
+  hasParent: 0
 --- !u!65 &495818990494011655
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -179,6 +181,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 495818991053535693}
+  - component: {fileID: -5427401573180259285}
+  - component: {fileID: -741828591081465515}
   m_Layer: 0
   m_Name: DefaultTool1
   m_TagString: Untagged
@@ -202,3 +206,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5427401573180259285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495818991053535682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-741828591081465515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495818991053535682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1

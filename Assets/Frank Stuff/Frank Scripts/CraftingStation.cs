@@ -18,7 +18,7 @@ public class CraftingStation : DefaultInteractable
     [SerializeField]
     GameObject destroyToolIndicator;
 
-    
+    float startupTimer = 1;
 
      bool correctTool = false, canCraft = false;
         
@@ -26,11 +26,11 @@ public class CraftingStation : DefaultInteractable
     bool destroysTool, toolOutput;
 
     
-
+    
     // Start is called before the first frame update
     void FirstAction()
     {
-        
+        //StartCoroutine(waiter());
         pc = FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>();
 
         if (destroysTool)
@@ -74,10 +74,18 @@ public class CraftingStation : DefaultInteractable
 
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-        print(pc);
+        if (startupTimer > 0)
+        {
+            startupTimer -= Time.deltaTime;
+            return;
+        }
+
+        //print(pc);
         if (pc != FindObjectOfType<GameSetup>().localPlayer.GetComponent<PlayerController>())
         {
             print("trying");
@@ -295,7 +303,7 @@ public class CraftingStation : DefaultInteractable
             }
 
 
-            GameObject thing = Instantiate(pc.itemList[indexes[4] - 1], transform.position + transform.forward, Quaternion.identity);
+            GameObject thing = PhotonNetwork.Instantiate(pc.itemList[indexes[4] - 1].name, transform.position + transform.forward, Quaternion.identity);
             thing.name = pc.itemList[indexes[4] - 1].name; 
         }
         else
@@ -305,5 +313,10 @@ public class CraftingStation : DefaultInteractable
 
         
 
+    }
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(1);
     }
 }
