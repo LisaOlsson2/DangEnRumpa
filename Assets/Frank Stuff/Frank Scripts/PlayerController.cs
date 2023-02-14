@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateMouse();
         UpdateMovement();
-        if (transform.childCount > 1 && transform.GetChild(1) != null)
+        if (transform.childCount > 1 && transform.GetChild(1).name == "Player Sprites")
         {
             GameObject shape = transform.GetChild(1).gameObject;
             if (spectating)
