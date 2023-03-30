@@ -265,7 +265,7 @@ public class CraftingStation : DefaultInteractable
 
 
     }
-
+    [PunRPC]
     public override void OnInteract()
     {
 

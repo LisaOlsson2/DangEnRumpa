@@ -412,6 +412,7 @@ MonoBehaviour:
   itemInventory: 000000000000000000000000
   selectedItem: 0
   interactIndicator: {fileID: 1630143905177186035, guid: 40768535ee8a57548b698cc800ee7b16, type: 3}
+  playerIcon: {fileID: 3978659104642978077}
   tool: 0
   itemList:
   - {fileID: 495818991053535682, guid: f975693acdc708a42b526fbc2644fb93, type: 3}

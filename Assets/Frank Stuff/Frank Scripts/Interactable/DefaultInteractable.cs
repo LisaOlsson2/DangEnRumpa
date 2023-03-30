@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class DefaultInteractable : MonoBehaviour
 {
-    public GameObject player;
+
+    
+    [PunRPC]
     public virtual void OnInteract()
     {
         print("Kaboom");

@@ -6,9 +6,10 @@ public class Door : DefaultInteractable
 {
     [SerializeField]
     float targetRotation;
-    public float timer;
+    
+    float timer;
 
-    public bool open = false, canInteract, hasColision;
+    bool open = false, canInteract;
 
     BoxCollider bc;
 
@@ -21,11 +22,11 @@ public class Door : DefaultInteractable
     {
         if (open)
         {
-            transform.eulerAngles += new Vector3(0, (targetRotation-transform.eulerAngles.y) / 70f, 0);
+            transform.eulerAngles += new Vector3(0, (targetRotation-transform.eulerAngles.y) * 2f, 0)*Time.deltaTime;
         }
         else
         {
-            transform.eulerAngles += new Vector3(0, (0 - transform.eulerAngles.y) / 70f, 0);
+            transform.eulerAngles += new Vector3(0, (0 - transform.eulerAngles.y) * 2f, 0)*Time.deltaTime;
         }
         if (timer > 0)
         {

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 495818990494011672}
   - component: {fileID: 495818990494011652}
   - component: {fileID: 495818990494011655}
-  - component: {fileID: 495818990494011654}
+  - component: {fileID: 845227365768479859}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Interactable
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be9138648ef7c943be37fb474cc0feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  itemIndex: 0
   isTool: 1
 --- !u!95 &495818990494011672
 Animator:
@@ -159,7 +159,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.96567404, y: 0.8125, z: 0.2}
   m_Center: {x: 0.014720634, y: 0, z: 0}
---- !u!114 &495818990494011654
+--- !u!114 &845227365768479859
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,10 +168,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 495818990494011673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d5a8dc7f6f005c4b9d7481ef61920bc, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 0}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &495818991053535682
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +234,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -741828591081465515}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

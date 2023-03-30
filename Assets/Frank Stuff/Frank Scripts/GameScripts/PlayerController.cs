@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
     public int selectedItem = 0;
 
     [SerializeField]
-    GameObject interactIndicator;
+    GameObject interactIndicator, playerIcon;
+
+
+    PhotonView pv;
 
     public int tool;
 
@@ -44,18 +47,22 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!GetComponent<PhotonView>().IsMine)
+        if (GetComponent<PhotonView>().IsMine)
         {
-            PhotonNetwork.Destroy(transform.GetChild(0).gameObject);
-            this.enabled = false;
+            //PhotonNetwork.Destroy(transform.GetChild(1).gameObject);
+            transform.GetChild(1).GetComponent<SpriteRenderer>().color = Color.clear;
+
+
         }
         else
-        {
-
-            PhotonNetwork.Destroy(transform.GetChild(1).gameObject);
+        { 
+            //PhotonNetwork.Destroy(transform.GetChild(0).gameObject);
+            transform.GetChild(0).gameObject.SetActive(false);
         }
 
         controller = GetComponent<CharacterController>();
+
+        pv = GetComponent<PhotonView>();
 
         if (lockCursor)
         {
@@ -67,64 +74,74 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        UpdateMouse();
-        UpdateMovement();
-        if (transform.childCount > 1 && transform.GetChild(1).name == "Player Sprites")
+        if (health <= 0)
         {
-            GameObject shape = transform.GetChild(1).gameObject;
+            spectating = true;
+        }
+        else
+        {
+            spectating = false;
+        }
+        if (pv.IsMine)
+        {
+            UpdateMouse();
+            UpdateMovement();
+
+            
+
             if (spectating)
             {
-                shape.GetComponent<SpriteRenderer>().color = Color.clear;
+                stamina = 10;
+                Camera.main.fieldOfView = 90;
+
+
             }
             else
             {
-                shape.GetComponent<SpriteRenderer>().color = Color.white;
+                if (Input.GetKeyDown(interact) && !spectating)
+                {
+                    pv.RPC("Interact", RpcTarget.All);
+                }
+                Camera.main.fieldOfView = 60;
+
+            }
+
+            if (Input.GetKeyDown(exit))
+            {
+                if (Cursor.lockState == CursorLockMode.Locked)
+                {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+
+            }
+            if (Input.GetKeyDown(heal))
+            {
+                pv.RPC("Revive", RpcTarget.All);
+            }
+
+            if (Input.GetKeyDown(selfDamage))
+            {
+                TakeDamage(50);
             }
         }
         
         if (spectating)
         {
-            stamina = 10;
-            Camera.main.fieldOfView = 90;
-            
-            
+            playerIcon.GetComponent<SpriteRenderer>().GetComponent<SpriteRenderer>().color = Color.clear;
         }
-        else
+        else if (!pv.IsMine)
         {
-            if (Input.GetKeyDown(interact) && !spectating)
-            {
-                Interact();
-            }
-            Camera.main.fieldOfView = 60;
-            
-        }
-
-        if (Input.GetKeyDown(exit))
-        {
-            if (Cursor.lockState == CursorLockMode.Locked)
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            
-        }
-        if (Input.GetKeyDown(heal))
-        {
-            health = 100;
-            spectating = false;
-        }
-
-        if (Input.GetKeyDown(selfDamage))
-        {
-            TakeDamage(50);
+            playerIcon.GetComponent<SpriteRenderer>().GetComponent<SpriteRenderer>().color = Color.white;
+            //Debug.LogError("alive");
         }
         
+
     }
 
     void UpdateMouse()
@@ -228,7 +245,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    [PunRPC]
     void Interact()
     {
         RaycastHit hit;
@@ -239,14 +256,85 @@ public class PlayerController : MonoBehaviour
             if (hit.transform.tag == "Interactable")
             {
                 DefaultInteractable target = hit.transform.GetComponent<DefaultInteractable>();
-                target.player = gameObject;
-                target.OnInteract();
+
+                if (target.GetComponent<WorldItem>() != null)
+                {
+
+                    if (target.GetComponent<WorldItem>().isTool)
+                    {
+                        for (int i = 0; i < toolList.Length; i++)
+                        {
+                            //print(player.GetComponent<PlayerController>().toolList[i]);
+                            if (toolList[i].name == target.transform.parent.gameObject.name)
+                            {
+                                target.GetComponent<WorldItem>().itemIndex = i + 1;
+                                target.transform.parent.name = toolList[i].name;
+                                //print(itemIndex);
+                                break;
+                            }
+                        }
+
+
+                        if (tool == 0)
+                        {
+                            print("Tool Pickup");
+                            target.GetComponent<PhotonView>().RPC("OnInteract", RpcTarget.All);
+                            tool = target.GetComponent<WorldItem>().itemIndex;
+                            if (target.GetComponentInParent<PhotonView>().IsMine)
+                            {
+                                PhotonNetwork.Destroy(target.transform.parent.gameObject);
+                            }
+
+                        }
+                        else
+                        {
+                            print("Hands Full");
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < itemList.Length; i++)
+                        {
+                            //print(player.GetComponent<PlayerController>().itemList[i]);
+                            if (itemList[i].name == target.transform.parent.gameObject.name)
+                            {
+                                target.GetComponent<WorldItem>().itemIndex = i + 1;
+                                //print(itemIndex);
+                                break;
+                            }
+                        }
+
+                        int[] slot = itemInventory;
+                        if (slot[selectedItem] == 0)
+                        {
+                            print("Item Pickup");
+                            target.GetComponent<PhotonView>().RPC("OnInteract", RpcTarget.All);
+                            slot[selectedItem] = target.GetComponent<WorldItem>().itemIndex;
+                            if (target.GetComponentInParent<PhotonView>().IsMine)
+                            {
+                                PhotonNetwork.Destroy(target.transform.parent.gameObject);
+                            }
+
+                        }
+                        else
+                        {
+                            print("Slot Full");
+                        }
+                    }
+                }
+                else
+                {
+                    target.GetComponent<PhotonView>().RPC("OnInteract", RpcTarget.All);
+                }
+
+
+                //target.OnInteract();
                 //Debug.LogError("interacted");
             }
-            else if (hit.transform.tag == "player")
+            else if (hit.transform.tag == "Player")
             {
                 PlayerController target = hit.transform.GetComponent<PlayerController>();
-                target.TakeDamage(100);
+                hit.transform.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.Others, 100f);
             }
             else
             {
@@ -257,14 +345,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    [PunRPC]
     public void TakeDamage(float dmgAmmount)
     {
+        print("took damage");
         health -= dmgAmmount;
 
-        if (health <= 0)
-        {
-            spectating = true;
-        }
+        
+    }
+
+    [PunRPC]
+    public void Revive()
+    {
+        health = 100;
     }
 
     

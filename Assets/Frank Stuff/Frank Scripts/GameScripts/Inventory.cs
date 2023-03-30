@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour
             {
                 if (pc.selectedItem == slot)
                 {
-                    image.color = Color.white;
+                    image.color = Color.green;
                 }
                 else
                 {

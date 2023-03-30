@@ -3,16 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
-public class FrankLobbyCoantroller : MonoBehaviourPunCallbacks
+public class FrankLobbyController : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    GameObject roomJoinInput;
+    public string joinRoomCode;
+    public void RoomCodeInput()
+    {
+        joinRoomCode = roomJoinInput.GetComponent<TextMeshProUGUI>().text;
+    }
 
     public int roomSize;
 
     public void JoinRoom()
     {
-        PhotonNetwork.JoinRandomRoom();
-        print("Trying to join room");
+        print("trying to join");
+        if (joinRoomCode != "")
+        {
+            print("joining " + joinRoomCode);
+            PhotonNetwork.JoinRoom(joinRoomCode);
+        }
+        else
+        {
+            print("No room code detected");
+        }
+        
     }
 
 
@@ -20,13 +37,13 @@ public class FrankLobbyCoantroller : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         print("Cant find room");
-        CreateRoom();
+        //CreateRoom();
     }
 
-    void CreateRoom()
+    public void CreateRoom()
     {
         print("Creating Room");
-        int randomRoomNumber = Random.Range(0, 1000000);
+        int randomRoomNumber = Random.Range(1000, 9999);
         print(randomRoomNumber);
 
         RoomOptions options = new RoomOptions()
@@ -36,7 +53,7 @@ public class FrankLobbyCoantroller : MonoBehaviourPunCallbacks
             MaxPlayers = (byte)roomSize
 
         };
-        PhotonNetwork.CreateRoom("Room" + randomRoomNumber, options);
+        PhotonNetwork.CreateRoom("" + randomRoomNumber, options);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)

@@ -48,6 +48,10 @@ MonoBehaviour:
   - UpdateList
   - PlayMicInput
   - SetSource2
+  - OnInteract
+  - Interact
+  - TakeDamage
+  - Revive
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
