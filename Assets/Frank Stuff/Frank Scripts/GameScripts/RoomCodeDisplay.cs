@@ -17,6 +17,6 @@ public class RoomCodeDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "-" + PhotonNetwork.CurrentRoom.Name + "-";
+        text.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
     }
 }

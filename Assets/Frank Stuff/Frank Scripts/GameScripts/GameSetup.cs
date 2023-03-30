@@ -18,7 +18,7 @@ public class GameSetup : MonoBehaviour
     {
         //localPlayer = Instantiate(playerCharacter, new Vector3(0, 2, 0), Quaternion.identity);
 
-        localPlayer = PhotonNetwork.Instantiate("Player", new Vector3(0, 2, 0), Quaternion.identity);
+        localPlayer = PhotonNetwork.Instantiate("Player", new Vector3(Random.Range(-1f, 1f), 8, Random.Range(-1f, 1f)), Quaternion.identity);
 
         PhotonNetwork.Instantiate("Testing Cube", new Vector3(0, 4, 2), Quaternion.identity);
         

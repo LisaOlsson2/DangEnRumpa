@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Door : DefaultInteractable
 {
@@ -39,7 +40,7 @@ public class Door : DefaultInteractable
         }
 
     }
-
+    [PunRPC]
     public override void OnInteract()
     {
         if (canInteract)

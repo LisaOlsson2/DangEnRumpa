@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Lisa's Folder (No Touchy)/Scenes/Lisa's Scene.unity
     guid: 2f27a7d0b0b34b94b9bd11cd2c622d56
   - enabled: 1
-    path: Assets/Frank Stuff/FrankGameplay.unity
+    path: Assets/Frank Stuff/FrankLobby.unity
     guid: 00fd5db3034fe1b40bdec1e88c7243b0
+  - enabled: 1
+    path: Assets/Frank Stuff/FrankMainGame.unity
+    guid: ffdd133561bcdcc45a72cdc9c134c4d5
   m_configObjects: {}

@@ -32,7 +32,10 @@ public class FrankLobbyController : MonoBehaviourPunCallbacks
         
     }
 
-
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+    }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
@@ -44,7 +47,13 @@ public class FrankLobbyController : MonoBehaviourPunCallbacks
     {
         print("Creating Room");
         int randomRoomNumber = Random.Range(1000, 9999);
-        print(randomRoomNumber);
+        //print(randomRoomNumber);
+
+        if (joinRoomCode == "")
+        {
+            print("insert a room code");
+            return;
+        }
 
         RoomOptions options = new RoomOptions()
         {
@@ -53,12 +62,19 @@ public class FrankLobbyController : MonoBehaviourPunCallbacks
             MaxPlayers = (byte)roomSize
 
         };
-        PhotonNetwork.CreateRoom("" + randomRoomNumber, options);
+        PhotonNetwork.CreateRoom(joinRoomCode.ToString(), options);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        CreateRoom();
+        
+        print(message);
+        print(returnCode);
+
+        if (returnCode == 32766)
+        {
+            print("This room code is already in use.");
+        }
     }
 
     public void Cancel()

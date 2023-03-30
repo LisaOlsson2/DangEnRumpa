@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     float moveSmoothTime = 0.3f;
 
     [SerializeField]
-    KeyCode interact, sprint, inv1, inv2, inv3, dropItem, dropTool, exit, heal, selfDamage;
+    KeyCode interact, sprint, inv1, inv2, inv3, dropItem, dropTool, exit, heal, selfDamage, startGame;
 
     [SerializeField]
     bool lockCursor = true, sprinting = false, spectating = false;
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyDown(interact) && !spectating)
+                if ((Input.GetKeyDown(interact) || Input.GetMouseButtonDown(1)) && !spectating)
                 {
                     pv.RPC("Interact", RpcTarget.All);
                 }
@@ -128,6 +129,12 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(selfDamage))
             {
                 TakeDamage(50);
+            }
+
+            if (SceneManager.GetActiveScene().buildIndex == 3 && Input.GetKeyDown(startGame) && PhotonNetwork.IsMasterClient)
+            {
+                SceneManager.LoadScene(4);
+                PhotonNetwork.CurrentRoom.IsOpen = false;
             }
         }
         

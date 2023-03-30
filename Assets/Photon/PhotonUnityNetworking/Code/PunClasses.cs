@@ -180,7 +180,9 @@ namespace Photon.Pun
         /// <param name="message">Debug message for the error.</param>
         public virtual void OnJoinRoomFailed(short returnCode, string message)
         {
+            print(message);
         }
+
 
         /// <summary>
         /// Called when this client created a room and entered it. OnJoinedRoom() will be called as well.
