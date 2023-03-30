@@ -10,32 +10,31 @@ public class Door : DefaultInteractable
     
     float timer;
 
-    bool open = false, canInteract;
+    Material opened, closed;
+
+    public bool open = false, canInteract = true;
 
     BoxCollider bc;
+
+    
 
     private void Start()
     {
         bc = GetComponent<BoxCollider>();
+
+        
     }
 
     private void Update()
     {
-        if (open)
-        {
-            transform.eulerAngles += new Vector3(0, (targetRotation-transform.eulerAngles.y) * 2f, 0)*Time.deltaTime;
-        }
-        else
-        {
-            transform.eulerAngles += new Vector3(0, (0 - transform.eulerAngles.y) * 2f, 0)*Time.deltaTime;
-        }
+        
         if (timer > 0)
         {
             timer -= Time.deltaTime;
         }
         else
         {
-            bc.enabled = true;
+            //bc.enabled = true;
             canInteract = true;
         }
 
@@ -43,20 +42,28 @@ public class Door : DefaultInteractable
     [PunRPC]
     public override void OnInteract()
     {
+
+
+        print("interated with door");
+
         if (canInteract)
         {
+            
+
             timer = 0.5f;
             canInteract = false;
-            bc.enabled = false;
+            //bc.enabled = false;
 
             if (open)
             {
-
+                bc.isTrigger = false;
+                GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 open = false;
             }
             else
             {
-
+                bc.isTrigger = true;
+                GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
                 open = true;
             }
         }
