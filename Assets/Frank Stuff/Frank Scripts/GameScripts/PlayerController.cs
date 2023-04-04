@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
                 TakeDamage(50);
             }
 
-            if (SceneManager.GetActiveScene().buildIndex == 3 && Input.GetKeyDown(startGame) && PhotonNetwork.IsMasterClient)
+            if (SceneManager.GetActiveScene().buildIndex == 3 && Input.GetKeyDown(startGame) && PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount > 1)
             {
                 SceneManager.LoadScene(4);
                 PhotonNetwork.CurrentRoom.IsOpen = false;

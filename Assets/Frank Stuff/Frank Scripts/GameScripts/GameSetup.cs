@@ -14,7 +14,7 @@ public class GameSetup : MonoBehaviour
     }*/
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         //localPlayer = Instantiate(playerCharacter, new Vector3(0, 2, 0), Quaternion.identity);
 
